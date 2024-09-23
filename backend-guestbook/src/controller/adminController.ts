@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import AdminService from "../service/adminService";
 
 class AdminController {
-    // Delete a user
+
     async deleteUser(req: Request, res: Response) {
         const { userId } = req.params;
         try {
@@ -13,7 +13,7 @@ class AdminController {
         }
     }
 
-    // Ban a user
+
     async banUser(req: Request, res: Response) {
         const { userId } = req.params;
         try {
@@ -24,7 +24,7 @@ class AdminController {
         }
     }
 
-    // Delete a post
+
     async deletePost(req: Request, res: Response) {
         const { postId } = req.params;
         try {

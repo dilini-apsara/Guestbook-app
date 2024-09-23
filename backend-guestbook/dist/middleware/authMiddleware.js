@@ -28,7 +28,7 @@ const authMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, fun
             return res.status(401).json({ message: 'Invalid token' });
         }
         console.log('middle ware ' + user);
-        req.user = user; // Attach user to the request object
+        req.user = user;
         console.log(user);
         next();
     }

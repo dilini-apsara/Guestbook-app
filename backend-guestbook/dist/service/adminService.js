@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const user_1 = require("../entity/user");
 const post_1 = require("../entity/post"); // Assuming you have a Post model
 class AdminService {
-    // Delete a user
     deleteUser(userId) {
         return __awaiter(this, void 0, void 0, function* () {
             const user = yield user_1.User.findByIdAndDelete(userId);
@@ -22,7 +21,6 @@ class AdminService {
             return user;
         });
     }
-    // Ban a user
     banUser(userId) {
         return __awaiter(this, void 0, void 0, function* () {
             const user = yield user_1.User.findById(userId);
@@ -34,7 +32,6 @@ class AdminService {
             return user;
         });
     }
-    // Delete a post
     deletePost(postId) {
         return __awaiter(this, void 0, void 0, function* () {
             const post = yield post_1.Post.findByIdAndDelete(postId);

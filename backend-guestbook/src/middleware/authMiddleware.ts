@@ -21,7 +21,7 @@ export const authMiddleware = async (req: AuthRequest, res: Response, next: Next
             return res.status(401).json({message: 'Invalid token'});
         }
         console.log('middle ware ' + user);
-        req.user = user; // Attach user to the request object
+        req.user = user;
         console.log(user);
         next();
     } catch (err) {

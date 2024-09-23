@@ -10,10 +10,5 @@ const router = (0, express_1.Router)();
 router.get('/profile', authMiddleware_1.authMiddleware, userController_1.default.getProfile);
 router.put('/profile', authMiddleware_1.authMiddleware, userController_1.default.updateProfile);
 router.delete('/delete', authMiddleware_1.authMiddleware, userController_1.default.deleteAccount);
-// // Forgot password route
-// router.post('/forgot-password', UserController.forgotPassword);
-//
-// // Reset password route (with token)
-//router.post('/reset-password/:token', (req: ResetPasswordRequest, res) => UserController.resetPassword(req as ResetPasswordRequest, res));
 exports.default = router;
 //# sourceMappingURL=userRoutes.js.map

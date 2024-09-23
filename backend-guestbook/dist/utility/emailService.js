@@ -17,7 +17,7 @@ const nodemailer_1 = __importDefault(require("nodemailer"));
 function sendResetPasswordEmail(email, resetUrl) {
     return __awaiter(this, void 0, void 0, function* () {
         const transporter = nodemailer_1.default.createTransport({
-            service: 'gmail', // Replace with your service
+            service: 'gmail',
             auth: {
                 user: process.env.EMAIL_USER,
                 pass: process.env.EMAIL_PASSWORD

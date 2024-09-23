@@ -11,8 +11,5 @@ dotenv_1.default.config();
 console.log('auth ' + process.env.MONGO_URI);
 router.post('/register', authController_1.default.register);
 router.post('/login', authController_1.default.login);
-router.get('/', (req, res) => {
-    res.status(200).json({ message: 'Auth route is working!' });
-});
 exports.default = router;
 //# sourceMappingURL=authRoutes.js.map

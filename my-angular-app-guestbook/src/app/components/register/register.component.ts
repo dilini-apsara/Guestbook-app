@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
@@ -8,16 +8,13 @@ import {AuthService} from "../../services/auth.service";
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   username = '';
   email = '';
   password = '';
 
-  constructor(private router:Router,
-              private authService:AuthService) {}
-
-
-  ngOnInit(): void {
+  constructor(private router: Router,
+              private authService: AuthService) {
   }
 
   register() {

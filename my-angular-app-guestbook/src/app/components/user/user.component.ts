@@ -23,13 +23,6 @@ export class UserComponent implements OnInit {
     });
   }
 
-  // updateProfile() {
-  //   this.http.put('/api/profile', this.user).subscribe({
-  //     next: (res) => alert('Profile updated successfully'),
-  //     error: (err) => alert('Error updating profile')
-  //   });
-  // }
-
   updateProfile(){
     this.authService.updateUsername(this.user.username).subscribe({
       next: (response) => {

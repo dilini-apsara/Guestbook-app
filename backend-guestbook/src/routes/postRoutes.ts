@@ -11,6 +11,4 @@ router.post('/',authMiddleware,PostController.createPost);
 router.delete('/:postId',authMiddleware,PostController.deletePost);
 
 
-
-
 export default router;

@@ -11,7 +11,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const post_1 = require("../entity/post");
 class PostService {
-    // Create a new post
     createPost(title, content, author) {
         return __awaiter(this, void 0, void 0, function* () {
             const post = new post_1.Post({
@@ -23,14 +22,12 @@ class PostService {
             return post;
         });
     }
-    // Get all posts
     getAllPosts() {
         return __awaiter(this, void 0, void 0, function* () {
             const posts = yield post_1.Post.find().populate('user', 'email');
             return posts;
         });
     }
-    // Delete a post
     deletePost(postId) {
         return __awaiter(this, void 0, void 0, function* () {
             const post = yield post_1.Post.findByIdAndDelete(postId);

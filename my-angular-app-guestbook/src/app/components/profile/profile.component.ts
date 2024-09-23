@@ -9,7 +9,6 @@ import {AuthService} from "../../services/auth.service";
 })
 export class ProfileComponent implements OnInit {
 
-
   username = 'some one';
   posts: any[] = [];
 
@@ -18,18 +17,14 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const decodedToken = this.authService.getProfile();  // Get the decoded token
 
     this.authService.getProfile().subscribe(user => {
         this.username = user.username;
-        console.log('profile componenet ' + localStorage.getItem('token'));
-        console.log(" ng profile " + this.username)
       },
       (error) => {
         console.error('Error fetching profile:', error);
       }
     );
-
     this.loadPosts();
 
   }
@@ -48,15 +43,15 @@ export class ProfileComponent implements OnInit {
   deleteAccount() {
     if (confirm('Are you sure you want to delete your account?')) {
       this.authService.deleteAccount().subscribe(() => {
-        alert('Account deleted');
-        localStorage.removeItem('token');
-        this.router.navigate(['/login']);
-      },
+          alert('Account deleted');
+          localStorage.removeItem('token');
+          this.router.navigate(['/login']);
+        },
         (error) => {
           console.error('Error deleting account:', error);
           alert('Failed to delete account. Please try again.');
         }
-        );
+      );
     }
   }
 
@@ -75,7 +70,7 @@ export class ProfileComponent implements OnInit {
       this.authService.deletePost(postId).subscribe(
         () => {
           alert('Post deleted successfully!');
-          this.posts = this.posts.filter(post => post._id !== postId); // Remove the post from the array
+          this.posts = this.posts.filter(post => post._id !== postId);
         },
         (error) => {
           console.error('Failed to delete post:', error);

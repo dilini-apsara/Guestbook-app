@@ -24,7 +24,7 @@ const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 const authMiddleware_1 = require("./middleware/authMiddleware");
 // Load environment variables from .env file
 dotenv_1.default.config();
-const app = (0, express_1.default)(); // Initialize the express app
+const app = (0, express_1.default)();
 const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;
 // Middleware
@@ -37,11 +37,6 @@ app.use((0, morgan_1.default)('dev'));
 app.use('/api/auth', authRoutes_1.default);
 app.use('/api/users', authMiddleware_1.authMiddleware, userRoutes_1.default);
 app.use('/api/posts', authMiddleware_1.authMiddleware, postRoutes_1.default);
-// Health check route
-app.get('/api/health', (req, res) => {
-    res.status(200).json({ status: 'OK', message: 'Guestbook API is running' });
-});
-// MongoDB Connection and Server Start
 function startServer() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -58,10 +53,9 @@ function startServer() {
         }
         catch (error) {
             console.error('Error starting the server:', error);
-            process.exit(1); // Exit with failure if there's an error
+            process.exit(1);
         }
     });
 }
-// Start the server and connect to the database
 startServer();
 //# sourceMappingURL=main.js.map

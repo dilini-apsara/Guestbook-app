@@ -10,11 +10,10 @@ export async function connectDB() {
         console.log('MongoDB connected successfully');
     } catch (error) {
         console.error('Error connecting to MongoDB:', error);
-        process.exit(1); // Exit process with failure
+        process.exit(1);
     }
 }
 
-// Optional: Ping function to check if the database connection is working
 export async function ping() {
     try {
         const db = mongoose.connection;
