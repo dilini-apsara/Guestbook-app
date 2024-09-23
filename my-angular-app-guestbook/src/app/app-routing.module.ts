@@ -5,8 +5,8 @@ import {RegisterComponent} from "./components/register/register.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {GuestbookComponent} from "./components/guestbook/guestbook.component";
 import {UserComponent} from "./components/user/user.component";
-import {AdminComponent} from "./components/admin/admin.component";
 import {AuthGuard} from "./guards/auth.guard";
+
 
 const routes: Routes = [
 
@@ -18,7 +18,6 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'guestbook', component: GuestbookComponent, canActivate: [AuthGuard] },
   { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
 
 
 ];

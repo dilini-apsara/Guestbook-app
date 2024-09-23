@@ -44,8 +44,9 @@ const UserSchema = new mongoose_1.Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     role: { type: String, enum: ['user', 'admin'], default: 'user' },
-    resetPasswordToken: { type: String }, // Field for password reset token
-    resetPasswordExpire: { type: Date } // Field for token expiration
+    resetPasswordToken: { type: String },
+    resetPasswordExpire: { type: Date },
+    isBanned: { type: Boolean, default: false }
 }, { timestamps: true });
 // Password hashing before saving
 UserSchema.pre('save', function (next) {

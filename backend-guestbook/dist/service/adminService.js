@@ -9,25 +9,29 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const post_1 = require("../entity/post");
-class PostService {
-    // Create a new post
-    createPost(title, content, author) {
+const user_1 = require("../entity/user");
+const post_1 = require("../entity/post"); // Assuming you have a Post model
+class AdminService {
+    // Delete a user
+    deleteUser(userId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const post = new post_1.Post({
-                title,
-                content,
-                author
-            });
-            yield post.save();
-            return post;
+            const user = yield user_1.User.findByIdAndDelete(userId);
+            if (!user) {
+                throw new Error('User not found');
+            }
+            return user;
         });
     }
-    // Get all posts
-    getAllPosts() {
+    // Ban a user
+    banUser(userId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const posts = yield post_1.Post.find().populate('user', 'email');
-            return posts;
+            const user = yield user_1.User.findById(userId);
+            if (!user) {
+                throw new Error('User not found');
+            }
+            user.isBanned = true;
+            yield user.save();
+            return user;
         });
     }
     // Delete a post
@@ -37,8 +41,9 @@ class PostService {
             if (!post) {
                 throw new Error('Post not found');
             }
+            return post;
         });
     }
 }
-exports.default = new PostService();
-//# sourceMappingURL=postService.js.map
+exports.default = new AdminService();
+//# sourceMappingURL=adminService.js.map

@@ -10,21 +10,24 @@ export interface IUser extends Document {
     role: 'user' | 'admin';
     resetPasswordToken?: string;
     resetPasswordExpire?: Date;
+    isBanned?: boolean;
 
     comparePassword(candidatePassword: string): Promise<boolean>;
+
     generatePasswordResetToken(): string;
 }
 
 // User Schema
 const UserSchema: Schema<IUser> = new Schema({
-    username: { type: String, required: true, unique: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    role: { type: String, enum: ['user', 'admin'], default: 'user' },
-    resetPasswordToken: { type: String }, // Field for password reset token
-    resetPasswordExpire: { type: Date } // Field for token expiration
-},
-    { timestamps: true });
+        username: {type: String, required: true, unique: true},
+        email: {type: String, required: true, unique: true},
+        password: {type: String, required: true},
+        role: {type: String, enum: ['user', 'admin'], default: 'user'},
+        resetPasswordToken: {type: String},
+        resetPasswordExpire: {type: Date},
+        isBanned: {type: Boolean, default: false}
+    },
+    {timestamps: true});
 
 // Password hashing before saving
 UserSchema.pre('save', async function (next) {
@@ -44,8 +47,6 @@ UserSchema.pre('save', async function (next) {
 UserSchema.methods.comparePassword = async function (candidatePassword: string) {
     return bcrypt.compare(candidatePassword, this.password);
 };
-
-
 
 
 export const User = mongoose.model<IUser>('User', UserSchema);

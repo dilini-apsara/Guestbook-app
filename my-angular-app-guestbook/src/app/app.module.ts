@@ -9,7 +9,6 @@ import {ProfileComponent} from './components/profile/profile.component';
 import {GuestbookComponent} from './components/guestbook/guestbook.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import { AdminComponent } from './components/admin/admin.component';
 import { UserComponent } from './components/user/user.component';
 import {AuthService} from "./services/auth.service";
 import { NavComponent } from './components/nav/nav.component';
@@ -21,7 +20,6 @@ import { NavComponent } from './components/nav/nav.component';
     RegisterComponent,
     ProfileComponent,
     GuestbookComponent,
-    AdminComponent,
     UserComponent,
     NavComponent
   ],

@@ -20,6 +20,7 @@ export class GuestbookComponent implements OnInit {
     }
 
   createPost() {
+
     this.authService.createPost(this.post).subscribe(
       (response) => {
         alert('Post created successfully!');

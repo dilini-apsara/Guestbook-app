@@ -3,10 +3,11 @@ import {Post} from "../entity/post";
 
 class PostService {
     // Create a new post
-    async createPost(userId: string, content: string) {
+    async createPost(title: string, content: string,author:string) {
         const post = new Post({
-            user: userId,
+            title,
             content,
+            author
         });
         await post.save();
         return post;

@@ -7,14 +7,15 @@ import PostService from "../service/postService";
 class PostController {
     // Create a new post
     async createPost(req: AuthRequest, res: Response) {
-        const { content } = req.body;
+        const { title,content } = req.body;
+        const author=req.user?.id;
 
         try {
             if (!req.user) {
                 return res.status(401).json({ message: 'User not authenticated' });
             }
 
-            const post = await PostService.createPost(req.user.id, content);
+            const post = await PostService.createPost(title, content,author);
             res.status(201).json({ post });
         } catch (err) {
             res.status(400).json({ message: err.message });

@@ -10,6 +10,7 @@ import userRoutes from "./routes/userRoutes";
 import {authMiddleware} from "./middleware/authMiddleware";
 
 
+
 // Load environment variables from .env file
 dotenv.config();
 
@@ -28,6 +29,8 @@ app.use(morgan('dev'));
 app.use('/api/auth', authRoutes);
 app.use('/api/users', authMiddleware, userRoutes);
 app.use('/api/posts', authMiddleware, postRoutes);
+
+
 
 // Health check route
 app.get('/api/health', (req, res) => {

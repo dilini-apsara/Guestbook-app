@@ -12,35 +12,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const postService_1 = __importDefault(require("../service/postService"));
-class PostController {
-    // Create a new post
-    createPost(req, res) {
+const adminService_1 = __importDefault(require("../service/adminService"));
+class AdminController {
+    // Delete a user
+    deleteUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            var _a;
-            const { title, content } = req.body;
-            const author = (_a = req.user) === null || _a === void 0 ? void 0 : _a.id;
+            const { userId } = req.params;
             try {
-                if (!req.user) {
-                    return res.status(401).json({ message: 'User not authenticated' });
-                }
-                const post = yield postService_1.default.createPost(title, content, author);
-                res.status(201).json({ post });
+                yield adminService_1.default.deleteUser(userId);
+                res.status(200).json({ message: 'User deleted successfully' });
             }
             catch (err) {
-                res.status(400).json({ message: err.message });
+                res.status(err.message === 'User not found' ? 404 : 400).json({ message: err.message });
             }
         });
     }
-    // Get all posts
-    getAllPosts(req, res) {
+    // Ban a user
+    banUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            const { userId } = req.params;
             try {
-                const posts = yield postService_1.default.getAllPosts();
-                res.status(200).json({ posts });
+                yield adminService_1.default.banUser(userId);
+                res.status(200).json({ message: 'User banned successfully' });
             }
             catch (err) {
-                res.status(400).json({ message: err.message });
+                res.status(err.message === 'User not found' ? 404 : 400).json({ message: err.message });
             }
         });
     }
@@ -49,14 +45,14 @@ class PostController {
         return __awaiter(this, void 0, void 0, function* () {
             const { postId } = req.params;
             try {
-                yield postService_1.default.deletePost(postId);
+                yield adminService_1.default.deletePost(postId);
                 res.status(200).json({ message: 'Post deleted successfully' });
             }
             catch (err) {
-                res.status(400).json({ message: err.message });
+                res.status(err.message === 'Post not found' ? 404 : 400).json({ message: err.message });
             }
         });
     }
 }
-exports.default = new PostController();
-//# sourceMappingURL=postController.js.map
+exports.default = new AdminController();
+//# sourceMappingURL=adminController.js.map
